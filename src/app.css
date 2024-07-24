@@ -1,0 +1,305 @@
+/* fonts */
+
+@font-face {
+	font-family: 'Thin';
+	src: url('/fonts/inter/Inter-Thin.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'ExtraLight';
+	src: url('/fonts/inter/Inter-ExtraLight.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'light';
+	src: url('/fonts/inter/Inter-Light.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Regular';
+	src: url('/fonts/inter/Inter-Regular.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Medium';
+	src: url('/fonts/inter/Inter-Medium.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'SemiBold';
+	src: url('/fonts/inter/Inter-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Bold';
+	src: url('/fonts/inter/Inter-Bold.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'ExtraBold';
+	src: url('/fonts/inter/Inter-ExtraBold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Black';
+	src: url('/fonts/inter/Inter-Black.ttf') format('truetype');
+}
+:root {
+	/* base sizes */
+	--base-size: 18px; /* base font size */
+	--lineHeight: 1.4;
+
+	/* fonts */
+	--fw-black: 'Black', sans-serif;
+	--fw-bold: 'Bold', sans-serif;
+	--fw-extra-bold: 'ExtraBold', sans-serif;
+	--fw-semi-bold: 'SemiBold', sans-serif;
+	--fw-medium: 'Medium', sans-serif;
+	--fw-regular: 'Regular', sans-serif;
+	--fw-light: 'Light', sans-serif;
+	--fw-extra-light: 'ExtraLight', sans-serif;
+	--fw-thin: 'Thin', sans-serif;
+
+	/* fonts scale */
+	--scale: 1.125; /* Ratio 8:9 - major second */
+	--xl: calc(var(--lg) * var(--scale));
+	--lg: calc(var(--h1) * var(--scale));
+	--h1: calc(var(--h2) * var(--scale));
+	--h2: calc(var(--h3) * var(--scale));
+	--h3: calc(var(--h4) * var(--scale));
+	--h4: calc(var(--h5) * var(--scale));
+	--h5: calc(var(--h6) * var(--scale));
+	--h6: var(--base-size);
+	--sm: calc(var(--base-size) / var(--scale));
+	--xs: calc(var(--sm) / var(--scale));
+	--xxs: calc(var(--xs) / var(--scale));
+	--mini: calc(var(--xxs) / var(--scale));
+
+	/* colors */
+
+	--showColor: hsl(220, 4%, 85%);
+	--transparent: transparent;
+
+	--hsl-primary: 196 100% 50%;
+	--hsl-secondary: 260 82% 71%;
+
+	--hsl-white: 0 0% 100%;
+	/* blacks */
+	--hsl-black-matte: 204 22% 13%;
+	--hsl-black-charcoal: 204 19% 26%;
+	--hsl-black-licorice: 0 20% 9%;
+
+	/* whites */
+	--hsl-offwhite: 33 77% 96%;
+	--hsl-bonewhite: 44 5% 95%;
+	--hsl-alabaster: 48 29% 90%;
+
+	/* grays */
+	--hsl-lightgray: 220 13% 91%;
+	--hsl-gray: 213 36% 67%;
+	--hsl-platinum: 40 5% 89%;
+	--hsl-steel: 203 5% 47%;
+	--hsl-charcoal: 204 19% 26%;
+
+	/* base HSL colors */
+	--hsl-orange: 11 91% 60%;
+	--hsl-orangered: 16 100% 50%;
+	--hsl-yellow: 46 100% 50%;
+	--hsl-gold: 51 100% 50%;
+	--hsl-green: 162 80% 59%;
+	--hsl-cyan: 180 50% 50%;
+	--hsl-blue: 218 87% 69%;
+	--hsl-levander: 260 82% 71%;
+	--hsl-purple: 260 60% 65%;
+	--hsl-pink: 301 55% 69%;
+	--hsl-red: 350 100% 65%;
+
+	/* TODO:
+	--clr-primary: 
+	--clr-secondary: 
+	--clr-accent:
+	--clr-success:
+	--clr--danger: 
+	--clr-warning: 
+	--clr-info:
+	--clr-light: 
+	--clr-dark: 
+	--clr-link: 
+	*/
+
+	--clr-brand: color-mix(in oklab, hsl(var(--hsl-main)) 65%, white);
+	--clr-brand-darker: color-mix(in oklab, hsl(var(--hsl-main)) 80%, black 5%);
+	--clr-bg-main: color-mix(in oklab, hsl(var(--hsl-offwhite)) 20%, white 1%);
+	--clr-font-main: color-mix(in oklab, hsl(var(--hsl-black-matte)) 90%, white 16%);
+	--clr-font-light: color-mix(in oklab, hsl(var(--hsl-black-matte)) 90%, white 60%);
+	--clr-link: color-mix(in oklab, hsl(var(--hsl-main)), black 16%);
+
+	--clr-cta: color-mix(in oklab, hsl(var(--hsl-blue)), black 5%);
+	--clr-cta-hover: color-mix(in oklab, hsl(var(--hsl-blue)), black 20%);
+}
+
+/* CSS reset */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+	color: var(--clr-font-main);
+}
+
+#root,
+#__next {
+	isolation: isolate;
+}
+
+/* base styles */
+body {
+	background: var(--clr-bg-main);
+	font-family: var(--fw-regular);
+	font-size: var(--base-size);
+	/* optimizeSpeed */
+	text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+
+	/* antialiasing */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	/* optimizeLegibility */
+	font-variant-ligatures: no-common-ligatures;
+	text-rendering: optimizeLegibility;
+}
+
+/* typography */
+
+h1,
+.h1 {
+	font-size: clamp(1.953rem, calc(1.4rem + 1vw), 3.052rem);
+	margin-bottom: 1rem;
+	font-family: var(--fw-medium);
+}
+
+h2,
+.h2 {
+	font-size: clamp(1.536rem, calc(1.2rem + 1vw), 2.441rem);
+	margin-bottom: var(--h3);
+	font-family: var(--fw-medium);
+}
+
+h3,
+.h3 {
+	font-size: clamp(1.536rem, calc(1rem + 1vw), 1.993rem);
+	margin-bottom: var(--h4);
+	font-family: var(--fw-medium);
+}
+
+h4,
+.h4 {
+	font-size: clamp(1.25rem, calc(0.9rem + 1vw), 1.563rem);
+	margin-bottom: var(--h5);
+	font-family: var(--fw-medium);
+}
+
+h5,
+.h5 {
+	font-size: clamp(1rem, calc(0.8rem + 1vw), 1.25rem);
+	margin-bottom: var(--h6);
+	font-family: var(--fw-medium);
+}
+
+h6,
+.h6 {
+	font-size: clamp(1rem, calc(0.8rem + 0.5vw), 1rem);
+	margin-bottom: var(--base-size);
+	/* font-family: var(--fw-medium); */
+}
+
+/* max width of plain text */
+p,
+ul,
+ol {
+	max-width: 72ch;
+}
+
+p {
+	line-height: var(--lineHeight);
+	margin-bottom: 1rem;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+
+ul,
+ol {
+	list-style-type: square;
+	margin-bottom: 1.6rem;
+}
+
+/* Links */
+a {
+	color: hsl(var(--hsl-primary));
+	text-decoration: none;
+}
+
+a:hover {
+	/* color: hsl(var(--hsl-primary)); */
+	text-decoration: underline;
+}
+
+strong {
+	letter-spacing: 0.05rem;
+}
+
+svg {
+	display: block;
+}
+/* helpers */
+
+/* utility classes */
+
+/* components */
+
+/* animations */
+
+/* pages */
+
+/* themes */
+
+/* variants */
+
+/* utilities */
+
+/* accessibility */
+
+/* print */
+
+/* debug */
