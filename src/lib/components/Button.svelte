@@ -1,6 +1,6 @@
 <script lang="ts">
-	import contrastChecker from '$lib/utils/contrastChecker';
-	import { onMount, tick, type Snippet } from 'svelte';
+	import adjustFontColor from '$lib/utils/contrast';
+	import { type Snippet } from 'svelte';
 	type Props = {
 		type?: string;
 		design: string;
@@ -9,35 +9,46 @@
 		'data-colorcheck': boolean;
 	};
 	export const { design, children, onclick }: Props = $props();
-	function handleMouseEnter(elm: HTMLElement) {
-		if (elm) {
-			contrastChecker(elm);
-		}
-	}
+	// function handleMouseEnter(elm: HTMLElement) {
+	// 	contrastChecker(elm);
+	// }
 
-	function handleMouseLeave(elm: HTMLElement) {
-		if (elm) {
-			contrastChecker(elm);
-		}
-	}
-	let elm: HTMLElement | undefined = undefined;
-	onMount(async () => {
-		await tick();
-		if (elm) {
-			contrastChecker(elm);
-		}
-	});
+	// function handleMouseLeave(elm: HTMLElement) {
+	// 	contrastChecker(elm);
+	// }
+
+	let btnElm = null as HTMLElement | null;
+	// use:contrastChecker
+	// bind:this={btnElm}
+	// onMount(() => {
+	// contrastChecker(btnElm);
+	// btnElm.addEventListener('mouseenter', (e) => contrastChecker(e.currentTarget));
+	// btnElm.addEventListener('mouseleave', (e) => contrastChecker(e.currentTarget));
+	// });
+
+	// function contrastChecker(elm: HTMLElement) {
+	// 	contrastChecker(elm);
+	// }
+
+	// function contrastChecker(elm: HTMLElement) {
+	// 	if (elm.dataset.colorcheck) {
+	// 		const bg = getComputedStyle(elm).backgroundColor;
+	// 		const text = getComputedStyle(elm).color;
+	// 		console.log(bg, text);
+	// 	}
+	// }
 </script>
 
 <button
 	class={design}
 	tabindex="0"
-	bind:this={elm}
-	{onclick}
-	onmouseenter={(event) => handleMouseEnter(event.currentTarget)}
-	onmouseleave={(event) => handleMouseLeave(event.currentTarget )}
-	>{@render (children as Snippet)()}</button
->
+	use:adjustFontColor
+	onclick={() => onclick()}
+	bind:this={btnElm}
+	onmouseenter={() => btnElm && adjustFontColor(btnElm)}
+	onmouseleave={() => btnElm && adjustFontColor(btnElm)}
+	>{@render (children as Snippet)()}
+</button>
 
 <style>
 	button {
@@ -47,8 +58,8 @@
 
 		--_private-color: var(--item-color, var(--hsl-primary));
 		cursor: pointer;
-		/* color: color-mix(in oklab, hsl(var(--_private-color)), white 80%); */
-		background: color-mix(in oklab, hsl(var(--_private-color)), white 3%);
+		color: color-mix(in oklch, hsl(var(--_private-color)), black 50%);
+		background: color-mix(in oklch, hsl(var(--_private-color)) , white 10%);
 		padding: 0.7rem 1.1rem; /* default size */
 		border: none;
 		border-radius: 0.25rem;
@@ -59,11 +70,10 @@
 		transition: all 0.1s ease-in-out;
 
 		&:hover {
-			background: color-mix(in oklab, hsl(var(--_private-color)), black 50%);
-			color: color-mix(in oklab, hsl(var(--_private-color)), white 90%);
+			background: color-mix(in oklab, hsl(var(--_private-color)), black 16%);
+			/* color: color-mix(in oklab, hsl(var(--_private-color)), white 90%); */
 		}
 
-		&:focus,
 		&:focus-visible {
 			outline: 1px solid hsl(var(--_private-color));
 			outline-offset: 2px;
@@ -76,7 +86,7 @@
 			background: transparent;
 			&:hover {
 				background: color-mix(in oklab, hsl(var(--_private-color)), white 80%);
-				color: color-mix(in oklab, hsl(var(--_private-color)), black 30%);
+				/* color: color-mix(in oklab, hsl(var(--_private-color)), black 30%); */
 			}
 		}
 		/* TODO: delete or add variant classes for different sizes */
@@ -116,7 +126,8 @@
 
 	/* Colors - can be used in Global app.css instead of here*/
 	.primary {
-		--item-color: var(--hsl-primary);
+		/*--item-color: var(--hsl-primary);*/
+		--item-color: var(--hsl-black-matte);
 	}
 
 	.secondary {
@@ -164,5 +175,9 @@
 	.black {
 		/* background: hsl(203, 50%, 47%); */
 		--item-color: var(--hsl-black-matte);
+	}
+		.white {
+		/* --item-color: hsl(203, 50%, 47%); */
+		--item-color: var(--hsl-white);
 	}
 </style>
