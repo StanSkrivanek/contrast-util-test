@@ -3,21 +3,7 @@
 </script>
 
 <Button
-	design="white"
-	onclick={() => {
-		console.log('click');
-	}}
-	>Button
-</Button>
-<Button
 	design="black"
-	onclick={() => {
-		console.log('click');
-	}}
-	>Button
-</Button>
-<Button
-	design="steel"
 	onclick={() => {
 		console.log('click');
 	}}
@@ -31,7 +17,7 @@
 	>Button
 </Button>
 <Button
-	design="secondary"
+	design="white"
 	onclick={() => {
 		console.log('click');
 	}}

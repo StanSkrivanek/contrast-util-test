@@ -58,7 +58,7 @@
 
 		--_private-color: var(--item-color, var(--hsl-primary));
 		cursor: pointer;
-		color: color-mix(in oklch, hsl(var(--_private-color)), black 50%);
+		color: color-mix(in oklch, hsl(var(--_private-color)), black 75%);
 		background: color-mix(in oklch, hsl(var(--_private-color)) , white 10%);
 		padding: 0.7rem 1.1rem; /* default size */
 		border: none;
@@ -70,7 +70,7 @@
 		transition: all 0.1s ease-in-out;
 
 		&:hover {
-			background: color-mix(in oklab, hsl(var(--_private-color)), black 16%);
+			background: color-mix(in oklab, hsl(var(--_private-color)), black 20%);
 			/* color: color-mix(in oklab, hsl(var(--_private-color)), white 90%); */
 		}
 
