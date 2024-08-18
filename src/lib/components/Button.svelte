@@ -45,8 +45,6 @@
 	use:adjustFontColor
 	onclick={() => onclick()}
 	bind:this={btnElm}
-	onmouseenter={() => btnElm && adjustFontColor(btnElm)}
-	onmouseleave={() => btnElm && adjustFontColor(btnElm)}
 	>{@render (children as Snippet)()}
 </button>
 
@@ -58,8 +56,8 @@
 
 		--_private-color: var(--item-color, var(--hsl-primary));
 		cursor: pointer;
-		color: color-mix(in oklch, hsl(var(--_private-color)), black 75%);
-		background: color-mix(in oklch, hsl(var(--_private-color)) , white 10%);
+		color: color-mix(in oklab, hsl(var(--_private-color)), hsl(0, 0%, 0%) 75%);
+		background: color-mix(in oklab, hsl(var(--_private-color)) , hsl(0, 0%, 100%) 10%);
 		padding: 0.7rem 1.1rem; /* default size */
 		border: none;
 		border-radius: 0.25rem;
@@ -178,6 +176,6 @@
 	}
 		.white {
 		/* --item-color: hsl(203, 50%, 47%); */
-		--item-color: var(--hsl-white);
+		--item-color: var(--hsl-offwhite);
 	}
 </style>
