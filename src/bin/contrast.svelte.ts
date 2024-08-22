@@ -14,8 +14,8 @@ export default function adjustFontColor(elm: HTMLElement) {
 
 		// 2. convert oklab to rgb
 		const bgRgb = oklabToRgb(bgColor.map(Number));
-		console.log('🚀 ~ changeColor ~ bgRgb:', bgRgb);
 		// const ftRgb = oklabToRgb(fontColor.map(Number));
+		
 		const bgLuminance = getLuminance(bgRgb).toFixed(3);
 		// const ftLuminance = getLuminance(ftRgb).toFixed(3);
 
