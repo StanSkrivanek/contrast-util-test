@@ -10,10 +10,10 @@
 	};
 	export const { design, children, onclick }: Props = $props();
 
-	let btnElm = null as HTMLElement | null;
+	// let btnElm = null as HTMLElement | null;
 </script>
 
-<button class={design} tabindex="0" use:adjustFontColor onclick={() => onclick()} bind:this={btnElm}
+<button class={design} tabindex="0" use:adjustFontColor onclick={() => onclick()} 
 	>{@render (children as Snippet)()}
 </button>
 
@@ -38,7 +38,7 @@
 
 		&:hover {
 			background: color-mix(in oklab, hsl(var(--_private-color)), black 25%);
-			color: color-mix(in oklab, hsl(var(--_private-color)), white 90%) !important;
+			/* color: color-mix(in oklab, hsl(var(--_private-color)), white 90%) !important; */
 		}
 
 		&:focus-visible {

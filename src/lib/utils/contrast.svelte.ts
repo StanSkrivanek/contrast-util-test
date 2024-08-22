@@ -92,3 +92,15 @@ function getLuminance(rgb: { r: number; g: number; b: number }) {
 	return luminance;
 }
 
+// function getContrastRatio(l1: number, l2: number) {
+// 	// console.log(l1, l2);
+
+// 	let y1 = Math.max(l1, l2);
+// 	let y2 = Math.min(l1, l2);
+// 	// console.log(y1, y2);
+
+// 	if (y2 > y1) {
+// 		[y1, y2] = [y2, y1];
+// 	}
+// 	return (y1 + 0.05) / (y2 + 0.05);
+// }
