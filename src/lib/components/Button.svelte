@@ -13,7 +13,7 @@
 	// let btnElm = null as HTMLElement | null;
 </script>
 
-<button class={design} tabindex="0" use:adjustFontColor onclick={() => onclick()} 
+<button class={design} tabindex="0" use:adjustFontColor onclick={() => onclick()}
 	>{@render (children as Snippet)()}
 </button>
 
@@ -34,7 +34,8 @@
 		letter-spacing: 0.02rem;
 		text-transform: uppercase;
 		font-family: var(--fw-bold);
-		transition: all 0.1s ease-in-out;
+		will-change: transition;
+		transition: background-color var(--_transitionTime) linear 0ms; /* --_transitionTime is defined in contrast.ts */
 
 		&:hover {
 			background: color-mix(in oklab, hsl(var(--_private-color)), black 25%);

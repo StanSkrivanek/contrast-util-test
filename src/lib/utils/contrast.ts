@@ -6,9 +6,11 @@ export default function adjustFontColor(elm: HTMLElement) {
 	if (!elm) return;
 
 	async function changeColor() {
+		const time = 300;
 		//  wait for color change and take new color
-		//TODO: the issue is that the color change is not immediate and 100ms is noticeable
-		await new Promise((resolve) => setTimeout(resolve, 100));
+		await new Promise((resolve) => setTimeout(resolve, time));
+		elm.style.setProperty('--_transitionTime', time + 'ms');
+
 		//  get new color
 		const bgColor = getComputedStyle(elm).backgroundColor.match(/\d+(?:\.\d+)?/g) || [];
 
@@ -25,11 +27,14 @@ export default function adjustFontColor(elm: HTMLElement) {
 			(+bgLuminance > 0.03928
 				? ((+bgLuminance + 0.055) / 1.055) ** 2.4
 				: +bgLuminance / 100 / 12.92) * 10;
-		console.log('🚀 ~ adjustFontColor ~ ratio2:', ratio);
 		if (ratio >= 4.5) {
 			elm.style.color = 'color-mix(in oklab, hsl(var(--_private-color)), hsl(0, 0%, 0%) 75%)';
+			// elm.style.transition = 'all 0.1s ease-in-out';
+			elm.style.transition = 'background-color var(--_transitionTime) ease-in-out';
 		} else {
 			elm.style.color = 'color-mix(in oklab, hsl(var(--_private-color)) , hsl(0, 0%, 100%) 95%)';
+			// elm.style.transition = 'all 0.1s ease-in-out';
+			elm.style.transition = 'background-color var(--_transitionTime) ease-in-out';
 		}
 		elm.addEventListener('mouseenter', changeColor);
 		elm.addEventListener('mouseleave', changeColor);
