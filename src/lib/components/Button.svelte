@@ -9,42 +9,11 @@
 		'data-colorcheck': boolean;
 	};
 	export const { design, children, onclick }: Props = $props();
-	// function handleMouseEnter(elm: HTMLElement) {
-	// 	contrastChecker(elm);
-	// }
-
-	// function handleMouseLeave(elm: HTMLElement) {
-	// 	contrastChecker(elm);
-	// }
 
 	let btnElm = null as HTMLElement | null;
-	// use:contrastChecker
-	// bind:this={btnElm}
-	// onMount(() => {
-	// contrastChecker(btnElm);
-	// btnElm.addEventListener('mouseenter', (e) => contrastChecker(e.currentTarget));
-	// btnElm.addEventListener('mouseleave', (e) => contrastChecker(e.currentTarget));
-	// });
-
-	// function contrastChecker(elm: HTMLElement) {
-	// 	contrastChecker(elm);
-	// }
-
-	// function contrastChecker(elm: HTMLElement) {
-	// 	if (elm.dataset.colorcheck) {
-	// 		const bg = getComputedStyle(elm).backgroundColor;
-	// 		const text = getComputedStyle(elm).color;
-	// 		console.log(bg, text);
-	// 	}
-	// }
 </script>
 
-<button
-	class={design}
-	tabindex="0"
-	use:adjustFontColor
-	onclick={() => onclick()}
-	bind:this={btnElm}
+<button class={design} tabindex="0" use:adjustFontColor onclick={() => onclick()} bind:this={btnElm}
 	>{@render (children as Snippet)()}
 </button>
 
@@ -57,7 +26,7 @@
 		--_private-color: var(--item-color, var(--hsl-primary));
 		cursor: pointer;
 		color: color-mix(in oklab, hsl(var(--_private-color)), hsl(0, 0%, 0%) 75%);
-		background: color-mix(in oklab, hsl(var(--_private-color)) , hsl(0, 0%, 100%) 10%);
+		background: color-mix(in oklab, hsl(var(--_private-color)), hsl(0, 0%, 100%) 10%);
 		padding: 0.7rem 1.1rem; /* default size */
 		border: none;
 		border-radius: 0.25rem;
@@ -68,8 +37,8 @@
 		transition: all 0.1s ease-in-out;
 
 		&:hover {
-			background: color-mix(in oklab, hsl(var(--_private-color)), black 20%);
-			/* color: color-mix(in oklab, hsl(var(--_private-color)), white 90%); */
+			background: color-mix(in oklab, hsl(var(--_private-color)), black 25%);
+			color: color-mix(in oklab, hsl(var(--_private-color)), white 90%) !important;
 		}
 
 		&:focus-visible {
@@ -84,7 +53,7 @@
 			background: transparent;
 			&:hover {
 				background: color-mix(in oklab, hsl(var(--_private-color)), white 80%);
-				/* color: color-mix(in oklab, hsl(var(--_private-color)), black 30%); */
+				color: color-mix(in oklab, hsl(var(--_private-color)), black 30%);
 			}
 		}
 		/* TODO: delete or add variant classes for different sizes */
@@ -139,8 +108,8 @@
 		--item-color: var(--hsl-orange);
 	}
 
-	.yellow {
-		--item-color: var(--hsl-gold);
+	.test {
+		--item-color: var(--hsl-yellow);
 	}
 
 	.green {
@@ -174,7 +143,7 @@
 		/* background: hsl(203, 50%, 47%); */
 		--item-color: var(--hsl-black-matte);
 	}
-		.white {
+	.white {
 		/* --item-color: hsl(203, 50%, 47%); */
 		--item-color: var(--hsl-offwhite);
 	}

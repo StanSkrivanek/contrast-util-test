@@ -101,9 +101,9 @@
 
 	/* base HSL colors */
 	--hsl-orange: 11 91% 60%;
-	--hsl-orangered: 16 100% 50%;
-	--hsl-yellow: 46 100% 50%;
-	--hsl-gold: 51 100% 50%;
+	--hsl-orangered: 16 99% 50%;
+	--hsl-yellow: 46 99% 50%;
+	--hsl-gold: 51 97% 50%;
 	--hsl-green: 162 80% 59%;
 	--hsl-cyan: 180 50% 50%;
 	--hsl-blue: 218 87% 69%;

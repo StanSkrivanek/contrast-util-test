@@ -6,34 +6,28 @@ export default function adjustFontColor(elm: HTMLElement) {
 	if (!elm) return;
 	// 1. get elements background color
 	const bgColor = getComputedStyle(elm).backgroundColor.match(/\d+(?:\.\d+)?/g) || [];
-	const fontColor = getComputedStyle(elm).color.match(/\d+(?:\.\d+)?/g) || [];
-	
+	// const fontColor = getComputedStyle(elm).color.match(/\d+(?:\.\d+)?/g) || [];
+
 	// 2. convert oklab to rgb
 	const bgRgb = oklabToRgb(bgColor.map(Number));
-	const ftRgb = oklabToRgb(fontColor.map(Number));
-	
-	
+	// const ftRgb = oklabToRgb(fontColor.map(Number));
+
+
 	// 3.get luminance
 	const bgLuminance = getLuminance(bgRgb).toFixed(3);
-	const ftLuminance = getLuminance(ftRgb).toFixed(3);
-	
+	// const ftLuminance = getLuminance(ftRgb).toFixed(3);
+
 	// 4. get contrast ratio
 	const ratio =
-	(+bgLuminance > 0.03928
-		? ((+bgLuminance + 0.055) / 1.055) ** 2.4
-		: +bgLuminance / 100 / 12.92) * 10;
-		console.log('🚀 ~ adjustFontColor ~ ratio2:', ratio);
-		if (ratio >= 4.5) {
-			elm.style.color = 'color-mix(in oklab, hsl(var(--_private-color)), hsl(0, 0%, 0%) 75%)';
-		} else {
-			elm.style.color = 'color-mix(in oklab, hsl(var(--_private-color)) , hsl(0, 0%, 100%) 95%)';
-		}
-		
-		// console.log("🚀 ~ adjustFontColor ~ bgColor:", bgColor)
-		// console.log("🚀 ~ adjustFontColor ~ bgRgb:", bgRgb)
-		// console.log("🚀 ~ adjustFontColor ~ ftRgb:", ftRgb)
-		// console.log('🚀 ~ adjustFontColor ~ bgLuminance:', bgLuminance);
-		// console.log('🚀 ~ adjustFontColor ~ ftLuminance:', ftLuminance);
+		(+bgLuminance > 0.03928
+			? ((+bgLuminance + 0.055) / 1.055) ** 2.4
+			: +bgLuminance / 100 / 12.92) * 10;
+	console.log('🚀 ~ adjustFontColor ~ ratio2:', ratio);
+	if (ratio >= 4.5) {
+		elm.style.color = 'color-mix(in oklab, hsl(var(--_private-color)), hsl(0, 0%, 0%) 75%)';
+	} else {
+		elm.style.color = 'color-mix(in oklab, hsl(var(--_private-color)) , hsl(0, 0%, 100%) 95%)';
+	}
 }
 
 /**
