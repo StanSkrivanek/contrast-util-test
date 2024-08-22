@@ -6,7 +6,7 @@ export default function adjustFontColor(elm: HTMLElement) {
 	if (!elm) return;
 
 	async function changeColor() {
-		const time = 300;
+		const time = 200;
 		//  wait for color change and take new color
 		await new Promise((resolve) => setTimeout(resolve, time));
 		elm.style.setProperty('--_transitionTime', time + 'ms');
