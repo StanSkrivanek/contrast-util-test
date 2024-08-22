@@ -7,19 +7,20 @@ export default function adjustFontColor(elm: HTMLElement) {
 
 	async function changeColor() {
 		//  wait for color change and take new color
+		//TODO: the issue is that the color change is not immediate and 100ms is noticeable
 		await new Promise((resolve) => setTimeout(resolve, 100));
-
 		//  get new color
 		const bgColor = getComputedStyle(elm).backgroundColor.match(/\d+(?:\.\d+)?/g) || [];
 
 		// 2. convert oklab to rgb
 		const bgRgb = oklabToRgb(bgColor.map(Number));
-		console.log('🚀 ~ changeColor ~ bgRgb:', bgRgb);
 		// const ftRgb = oklabToRgb(fontColor.map(Number));
+
+		//3. get luminance
 		const bgLuminance = getLuminance(bgRgb).toFixed(3);
 		// const ftLuminance = getLuminance(ftRgb).toFixed(3);
 
-		// 4. get contrast ratio
+		// 4. calculate contrast ratio
 		const ratio =
 			(+bgLuminance > 0.03928
 				? ((+bgLuminance + 0.055) / 1.055) ** 2.4
@@ -34,7 +35,6 @@ export default function adjustFontColor(elm: HTMLElement) {
 		elm.addEventListener('mouseleave', changeColor);
 	}
 
-	// 3.get luminance
 	changeColor();
 }
 
@@ -45,7 +45,6 @@ export default function adjustFontColor(elm: HTMLElement) {
  * @throws {Error} If the input is not a valid OKLab color string or if the OKLab color values are invalid.
  */
 function oklabToRgb(oklabArray: number[]) {
-	// console.log('🚀 ~ oklabToRgb ~ oklabArray:', oklabArray);
 	// Check if the the color is in rgb or oklab
 
 	const [okl, oka, okb] = oklabArray;
@@ -91,4 +90,3 @@ function getLuminance(rgb: { r: number; g: number; b: number }) {
 	const luminance = 0.2126 * R + 0.7152 * G + 0.0722 * B;
 	return luminance;
 }
-
