@@ -4,21 +4,26 @@
  */
 export default function adjustFontColor(elm: HTMLElement) {
 	if (!elm) return;
+	// get elm:hover styles
 
 	async function changeColor() {
-		const time = 200;
+		//  set time
+		const time = 100;
+
 		//  wait for color change and take new color
 		await new Promise((resolve) => setTimeout(resolve, time));
+
+		// 2. set transition time
 		elm.style.setProperty('--_transitionTime', time + 'ms');
 
-		//  get new color
+		// 3. get backgroundcolor
 		const bgColor = getComputedStyle(elm).backgroundColor.match(/\d+(?:\.\d+)?/g) || [];
 
-		// 2. convert oklab to rgb
+		// 4. convert oklab to rgb
 		const bgRgb = oklabToRgb(bgColor.map(Number));
 		// const ftRgb = oklabToRgb(fontColor.map(Number));
 
-		//3. get luminance
+		// 5. get luminance
 		const bgLuminance = getLuminance(bgRgb).toFixed(3);
 		// const ftLuminance = getLuminance(ftRgb).toFixed(3);
 
@@ -28,14 +33,15 @@ export default function adjustFontColor(elm: HTMLElement) {
 				? ((+bgLuminance + 0.055) / 1.055) ** 2.4
 				: +bgLuminance / 100 / 12.92) * 10;
 		if (ratio >= 4.5) {
-			elm.style.color = 'color-mix(in oklab, hsl(var(--_private-color)), hsl(0, 0%, 0%) 75%)';
-			// elm.style.transition = 'all 0.1s ease-in-out';
-			elm.style.transition = 'background-color var(--_transitionTime) ease-in-out';
+			elm.style.color = 'color-mix(in oklab, hsl(var(--_private-color)) 45%, hsl(0, 0%, 0%) )';
+			elm.style.transition =
+				'background-color var(--_transitionTime) ease-in-out, color var(--_transitionTime) linear';
 		} else {
-			elm.style.color = 'color-mix(in oklab, hsl(var(--_private-color)) , hsl(0, 0%, 100%) 95%)';
-			// elm.style.transition = 'all 0.1s ease-in-out';
-			elm.style.transition = 'background-color var(--_transitionTime) ease-in-out';
+			elm.style.color = 'color-mix(in oklab, hsl(var(--_private-color)) 5% , hsl(0, 0%, 100%) )';
+			elm.style.transition =
+				'background-color var(--_transitionTime) ease-in-out, color var(--_transitionTime) linear';
 		}
+		//  add event listeners
 		elm.addEventListener('mouseenter', changeColor);
 		elm.addEventListener('mouseleave', changeColor);
 	}
@@ -50,12 +56,21 @@ export default function adjustFontColor(elm: HTMLElement) {
  * @throws {Error} If the input is not a valid OKLab color string or if the OKLab color values are invalid.
  */
 function oklabToRgb(oklabArray: number[]) {
-	// Check if the the color is in rgb or oklab
+	// Check if the color is in OKLab format
+	if (oklabArray.length !== 3) {
+		throw new Error('Invalid OKLab color: Expected 3 values');
+	}
 
+	// okLab values should be within specific ranges
 	const [okl, oka, okb] = oklabArray;
+
 	// Check if the OKLab values are valid
 	if (typeof okl !== 'number' || typeof oka !== 'number' || typeof okb !== 'number') {
 		throw new Error('Invalid oklab color values');
+	}
+
+	if (okl < 0 || okl > 1 || oka < -0.4 || oka > 0.4 || okb < -0.4 || okb > 0.4) {
+		throw new Error('Invalid OKLab color: Values out of expected range');
 	}
 
 	// Convert OKLab to linear RGB

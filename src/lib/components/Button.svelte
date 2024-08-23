@@ -25,8 +25,8 @@
 
 		--_private-color: var(--item-color, var(--hsl-primary));
 		cursor: pointer;
-		color: color-mix(in oklab, hsl(var(--_private-color)), hsl(0, 0%, 0%) 75%);
-		background: color-mix(in oklab, hsl(var(--_private-color)), hsl(0, 0%, 100%) 10%);
+		color: color-mix(in oklab, hsl(var(--_private-color)) 25%, hsl(0, 0%, 0%));
+		background: color-mix(in oklab, hsl(var(--_private-color)) 90%, hsl(0, 0%, 100%));
 		padding: 0.7rem 1.1rem; /* default size */
 		border: none;
 		border-radius: 0.25rem;
@@ -35,11 +35,8 @@
 		text-transform: uppercase;
 		font-family: var(--fw-bold);
 		will-change: transition;
-		transition: background-color var(--_transitionTime) linear 0ms; /* --_transitionTime is defined in contrast.ts */
-
 		&:hover {
-			background: color-mix(in oklab, hsl(var(--_private-color)), black 25%);
-			/* color: color-mix(in oklab, hsl(var(--_private-color)), white 90%) !important; */
+			background-color: color-mix(in oklab, hsl(var(--_private-color)) 75%, hsl(0, 0%, 0%) );
 		}
 
 		&:focus-visible {
@@ -49,26 +46,14 @@
 		}
 
 		&.outline {
-			border: 1px solid color-mix(in oklab, hsl(var(--_private-color)), white 30%);
-			color: color-mix(in oklab, hsl(var(--_private-color)), black 10%);
+			border: 1px solid color-mix(in oklab, hsl(var(--_private-color)) 70%, hsl(0, 0%, 100%));
+			color: color-mix(in oklab, hsl(var(--_private-color)) 90%, hsl(0, 0%, 0%) );
 			background: transparent;
 			&:hover {
-				background: color-mix(in oklab, hsl(var(--_private-color)), white 80%);
-				color: color-mix(in oklab, hsl(var(--_private-color)), black 30%);
+				background: color-mix(in oklab, hsl(var(--_private-color)) 20%, hsl(0, 0%, 100%));
+				color: color-mix(in oklab, hsl(var(--_private-color)) 70%, hsl(0, 0%, 0%) );
 			}
 		}
-		/* TODO: delete or add variant classes for different sizes */
-		/* &.lg {
-			font-size: var(--md);
-			letter-spacing: -0.02rem;
-			padding: 1.2rem 3.2rem;
-		} */
-		/* &.sm {
-			padding: 0.6rem .9rem;
-			font-size: var(--xxs);
-		} */
-		/* there are 3 sizes at this moment - xs, md, default*/
-
 		/* TODO: unified sizes for all buttons and badges - xs, md & default*/
 		&.md {
 			font-size: var(--xxs);
