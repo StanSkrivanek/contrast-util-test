@@ -12,12 +12,17 @@ export default function adjustFontColor(elm: HTMLElement) {
 
 		//  wait for color change and take new color
 		await new Promise((resolve) => setTimeout(resolve, time));
-
+	
 		// 2. set transition time
 		elm.style.setProperty('--_transitionTime', time + 'ms');
 
 		// 3. get backgroundcolor
 		const bgColor = getComputedStyle(elm).backgroundColor.match(/\d+(?:\.\d+)?/g) || [];
+		
+		// if bgColor.length !== 3 eg. transparent stop process and return
+		if (bgColor.length !== 3) {
+			return;
+		}
 
 		// 4. convert oklab to rgb
 		const bgRgb = oklabToRgb(bgColor.map(Number));
@@ -56,7 +61,15 @@ export default function adjustFontColor(elm: HTMLElement) {
  * @throws {Error} If the input is not a valid OKLab color string or if the OKLab color values are invalid.
  */
 function oklabToRgb(oklabArray: number[]) {
+	console.log('🚀 ~ oklabToRgb ~ oklabArray:', oklabArray);
+
 	// Check if the color is in OKLab format
+
+	// if oklabArray.length !== 3 stop process and return
+	// if (oklabArray.length !== 3) {
+	// 	return;
+	// }
+
 	if (oklabArray.length !== 3) {
 		throw new Error('Invalid OKLab color: Expected 3 values');
 	}

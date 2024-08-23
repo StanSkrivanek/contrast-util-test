@@ -64,6 +64,7 @@
 			padding: 0.25rem 0.5rem;
 			font-size: var(--mini);
 		}
+
 		&.block {
 			display: block;
 			width: 100%;
@@ -94,13 +95,14 @@
 		--item-color: var(--hsl-orange);
 	}
 
-	.test {
-		--item-color: var(--hsl-yellow);
+	.gold {
+		--item-color: var(--hsl-gold);
 	}
 
 	.green {
 		--item-color: var(--hsl-green);
 	}
+
 	.blue {
 		--item-color: var(--hsl-blue);
 	}

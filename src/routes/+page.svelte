@@ -1,14 +1,15 @@
 <script>
 	import Button from '$lib/components/Button.svelte';
 </script>
+
 <Button
-	design="test"
+	design="gold outline"
 	onclick={() => {
 		console.log('click');
 	}}
 	>Button
 </Button>
- 
+
 <Button
 	design="black"
 	onclick={() => {
@@ -17,7 +18,7 @@
 	>Button
 </Button>
 <Button
-	design="yellow"
+	design="yellow outline "
 	onclick={() => {
 		console.log('click');
 	}}
@@ -31,7 +32,7 @@
 	>Button
 </Button>
 <Button
-	design="blue"
+	design="blue pill outline"
 	onclick={() => {
 		console.log('click');
 	}}
@@ -78,4 +79,4 @@
 		console.log('click');
 	}}
 	>Button
-</Button> 
+</Button>
